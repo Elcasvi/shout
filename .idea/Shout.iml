@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/shout_cli/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/shout_core/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/shout_train/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/shout_tools/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

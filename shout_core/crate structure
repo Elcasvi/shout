@@ -1,0 +1,33 @@
+crates/whisper_core/src/
+  lib.rs
+  error.rs
+  config/
+    mod.rs
+    model.rs               # ModelConfig (layers, heads, dims, vocab, etc.)
+    audio.rs               # AudioConfig (sample rate, n_mels, hop, etc.)
+    tokenizer.rs           # TokenizerConfig
+  audio/
+    mod.rs
+    wav.rs                 # decode wav (later: mp3/ogg behind features)
+    mel.rs                 # log-mel spectrogram
+    vad.rs                 # optional (feature gated)
+  tokenizer/
+    mod.rs
+    bpe.rs                 # BPE tokenizer (or wrapper around an existing crate)
+    special_tokens.rs      # <|transcribe|> <|translate|> <|de|> timestamps, etc.
+  model/
+    mod.rs
+    encoder.rs             # Burn module: conv subsampler + transformer encoder
+    decoder.rs             # Burn module: transformer decoder + cross-attn
+    whisper.rs             # WhisperModel forward methods
+  decoding/
+    mod.rs
+    greedy.rs
+    beam.rs                # optional later
+    timestamps.rs          # logic for timestamp tokens
+  pipeline/
+    mod.rs
+    transcribe.rs          # end-to-end: audio -> features -> tokens -> text
+  backend/
+    mod.rs
+    device.rs              # cpu/cuda/wgpu selection wrappers

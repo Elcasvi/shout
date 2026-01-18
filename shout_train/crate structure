@@ -1,0 +1,14 @@
+crates/whisper_train/src/
+  lib.rs
+  dataset/
+    mod.rs
+    commonvoice.rs         # loader for Common Voice style TSV + clips
+    manifest.rs            # your own manifest format (jsonl/csv)
+  training/
+    mod.rs
+    loop.rs                # burn::train integration
+    loss.rs                # cross-entropy, label smoothing (optional)
+    schedule.rs            # lr schedule
+  eval/
+    mod.rs
+    wer.rs                 # word error rate (basic)
