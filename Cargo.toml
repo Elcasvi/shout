@@ -1,0 +1,3 @@
+[workspace]
+resolver = "3"
+members = ["shout_cli","shout_core", "shout_train"]
