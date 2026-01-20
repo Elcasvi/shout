@@ -4,3 +4,9 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+mel_spec = "0.3.4"
+rubato = "1.0.0"
+symphonia = { version = "0.5.5", features = ["mp3", "wav", "flac", "vorbis"] }
+anyhow = "1.0.100"
+audioadapter-buffers = "2.0.0"
+ndarray = "=0.16.1"
