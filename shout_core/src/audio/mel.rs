@@ -1,10 +1,24 @@
 use mel_spec::prelude::*;
 
+#[derive(Debug, Clone)]
+pub struct MelSpec {
+    /// Number of time frames (T)
+    pub n_frames: usize,
+
+    /// Number of mel bins (M = usually 80)
+    pub n_mels: usize,
+
+    /// Flat buffer in row-major order:
+    /// data[frame * n_mels + mel_bin]
+    pub data: Vec<f32>,
+}
+
+
 /// Convert mono 16k PCM samples into a mel spectrogram matrix.
 ///
 /// Returns an ndarray matrix with shape either (n_mels, frames) or (frames, n_mels)
 /// depending on what `interleave_frames` returns in this crate.
-pub fn pcm_to_mel_frames_flat(pcm_16k_mono: &[f32], n_mels: usize) -> (Vec<f32>, usize) {
+pub fn pcm_to_mel_frames_flat(pcm_16k_mono: &[f32], n_mels: usize) -> MelSpec{
     let fft_size = 400;
     let hop_size = 160;
     let sampling_rate = 16000.0;
@@ -26,12 +40,14 @@ pub fn pcm_to_mel_frames_flat(pcm_16k_mono: &[f32], n_mels: usize) -> (Vec<f32>,
         }
     }
 
-    // IMPORTANT: in your version this returns Vec<f32> (as your error shows)
-    let frames: Vec<f32> = interleave_frames(&mel_frames, false, 100);
+    // Flatten exactly like the docs example
+    let flat: Vec<f32> = interleave_frames(&mel_frames, false, 100);
 
-    // Number of time frames T (assuming frames is laid out as T * n_mels)
-    // (This is the layout expected by tga_8bit(frames, n_mels) in their example.)
-    let n_frames = frames.len() / n_mels;
+    let n_frames = flat.len() / n_mels;
 
-    (frames, n_frames)
+    MelSpec {
+        n_frames,
+        n_mels,
+        data: flat,
+    }
 }

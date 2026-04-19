@@ -8,7 +8,7 @@ crates/whisper_core/src/
     tokenizer.rs           # TokenizerConfig
   audio/
     mod.rs 
-    decoder.rs                 # decode wav (later: mp3/ogg behind features)
+    decoder.rs             # decode wav (later: mp3/ogg behind features)
     mel.rs                 # log-mel spectrogram
     vad.rs                 # optional (feature gated)
   tokenizer/
